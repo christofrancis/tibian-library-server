@@ -3,16 +3,8 @@ const slugify = require("slugify");
 
 //method for creating book
 exports.create = (req, res) => {
-  const {
-    screenshot,
-    cover,
-    title,
-    location,
-    content,
-    finder,
-    keywords,
-    map_pin,
-  } = req.body; //request body and params
+  const { cover, title, location, content, finder, keywords, map_pin } =
+    req.body; //request body and params
   const slug = slugify(title);
 
   //validation
@@ -35,15 +27,11 @@ exports.create = (req, res) => {
     case !cover:
       return res.status(400).json({ error: "Cover is required." });
       break;
-    case !screenshot:
-      return res.status(400).json({ error: "Cover is required." });
-      break;
   }
 
   //method for creating book
   Book.create(
     {
-      screenshot,
       cover,
       title,
       location,
@@ -56,12 +44,10 @@ exports.create = (req, res) => {
     (err, book) => {
       if (err) {
         console.log(err);
-        res
-          .status(400)
-          .json({
-            error:
-              "Sprawdź czy wprowadzone dane są zgodne z Book Model Scheme lub czy nazwa nie jest już zajęta.",
-          });
+        res.status(400).json({
+          error:
+            "Sprawdź czy wprowadzone dane są zgodne z Book Model Scheme lub czy nazwa nie jest już zajęta.",
+        });
       }
       res.json(book);
     }
@@ -91,19 +77,11 @@ exports.read = (req, res) => {
 // method for editing book
 exports.edit = (req, res) => {
   const { slug } = req.params;
-  const {
-    screenshot,
-    cover,
-    title,
-    location,
-    content,
-    finder,
-    keywords,
-    map_pin,
-  } = req.body;
+  const { cover, title, location, content, finder, keywords, map_pin } =
+    req.body;
   Book.findOneAndUpdate(
     { slug },
-    { screenshot, cover, title, location, content, finder, keywords, map_pin },
+    { cover, title, location, content, finder, keywords, map_pin },
     { new: true }
   ).exec((err, book) => {
     if (err) console.log(err);

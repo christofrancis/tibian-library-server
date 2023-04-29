@@ -3,13 +3,6 @@ const mongoose = require("mongoose");
 //doc_and_paper Schema
 const doc_and_paperSchema = new mongoose.Schema(
   {
-    screenshot: {
-      type: String,
-      trim: true,
-      min: 1,
-      max: 300,
-      required: true,
-    },
     title: {
       type: String,
       trim: true,

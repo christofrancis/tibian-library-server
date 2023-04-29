@@ -3,13 +3,6 @@ const mongoose = require("mongoose");
 //book Schema
 const bookSchema = new mongoose.Schema(
   {
-    screenshot: {
-      type: String,
-      trim: true,
-      min: 1,
-      max: 300,
-      required: true,
-    },
     title: {
       type: String,
       trim: true,
